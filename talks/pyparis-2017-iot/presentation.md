@@ -145,7 +145,7 @@ Implementations exist for other languages: <strong><a href=http://coap.technolog
 * MQTT Sensor Network (MQTT-SN): adapted for constrained devices with 802.15.4
   radios
 
-* MQTT v3.1.1 is an [OASIS](https://en.wikipedia.org/wiki/OASIS_(organization)) standard
+* MQTT v3.1.1 is an [OASIS](https://en.wikipedia.org/wiki/OASIS_(organization) standard
 
 <center>
     <img src="images/pub-sub-model.png" alt="MQTT model" style="width:450px;"/>
