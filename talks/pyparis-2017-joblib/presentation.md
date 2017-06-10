@@ -264,7 +264,7 @@ array([[ 0.,  0.,  1.],
 
 ## The ecosystem
 
-- <span style="color:orange">**54 differents contributors**</span> since the beginning in 2008
+- <span style="color:orange">**54 different contributors**</span> since the beginning in 2008
 
 <div style:"position:relative">
 <span style="margin-left:22em">
@@ -435,13 +435,15 @@ Store backends available:
 --
 
 <div style="margin-left:2em;margin-top:2em">
-    &#x21d2; no need for a production Hadoop cluster<br/>
-    <span style="position:absolute;margin-top:0.5em">&#x21d2; make developper life easier: <span style="font-weight:bold">CI on Travis is possible</span></span>
+    <span style="position:absolute;margin-top:0.5em">&#x21d2; no need for a production Hadoop cluster</span><br/>
+    <span style="position:absolute;margin-top:1.5em">&#x21d2; make developer life easier: <span style="font-weight:bold">CI on Travis is 
+    possible</span></span><br/>
+    <span style="position:absolute;margin-top:2.5em">&#x21d2; local repository on host is shared with Joblib-hadoop-node container</span><br/>
 </div>
 
 --
 
-<div style="position:absolute;margin-left:30em;margin-top:-1em"><img src="images/tested_criteo.png" alt="ec2" style="width: 180px;"/></div>
+<div style="position:absolute;margin-left:30em;margin-top:-5.5em"><img src="images/tested_criteo.png" alt="ec2" style="width: 180px;"/></div>
 
 ---
 
@@ -519,7 +521,7 @@ class: left, middle
 
 --
 
-- <span style="color:orange">**Store backends**</span> available  &#x21d2; **HDFS (Hadoop)** and **AWS S3**
+- Extra <span style="color:orange">**Store backends**</span> available  &#x21d2; **HDFS (Hadoop)** and **AWS S3**
 
 <br/>
 
