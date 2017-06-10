@@ -152,7 +152,7 @@ A Python package to make your algorithms run faster</span></center>
 >>> from joblib import Parallel, delayed
 >>> from math import sqrt
 
->>> Parallel(n_jobs=3, verbose=50)(delayed(sqrt)(i**2) for i in range(6))
+*>>> Parallel(n_jobs=3, verbose=50)(delayed(sqrt)(i**2) for i in range(6))
 [Parallel(n_jobs=3)]: Done   1 tasks      | elapsed:    0.0s
 [...]
 [Parallel(n_jobs=3)]: Done   6 out of   6 | elapsed:    0.0s finished
@@ -193,10 +193,9 @@ A Python package to make your algorithms run faster</span></center>
 >>> from joblib import (Parallel, delayed,
 >>>                      register_parallel_backend, parallel_backend)
 
->>> register_parallel_backend('distributed', DistributedBackend)
-
->>> with parallel_backend('distributed', scheduler_host='dscheduler:8786'):
->>>     Parallel(n_jobs=3)(delayed(sqrt)(i**2) for i in range(6))
+*>>> register_parallel_backend('distributed', DistributedBackend)
+*>>> with parallel_backend('distributed', scheduler_host='dscheduler:8786'):
+*>>>     Parallel(n_jobs=3)(delayed(sqrt)(i**2) for i in range(6))
 [...]
 ```
 
@@ -211,8 +210,8 @@ A Python package to make your algorithms run faster</span></center>
 >>> import numpy as np
 >>> a = np.vander(np.arange(3)).astype(np.float)
 
->>> mem = Memory(cachedir='/tmp/joblib')
->>> square = mem.cache(np.square)
+*>>> mem = Memory(cachedir='/tmp/joblib')
+*>>> square = mem.cache(np.square)
 >>> b = square(a)
 ________________________________________________________________________________
 [Memory] Calling square...
@@ -242,11 +241,11 @@ array([[ 0.,  0.,  1.],
 ```python
 >>> import numpy as np
 >>> import joblib
->>> obj = [('a', [1, 2, 3]), ('b', np.arange(10))]
->>> joblib.dump(obj, '/tmp/test.pkl')
+*>>> obj = [('a', [1, 2, 3]), ('b', np.arange(10))]
+*>>> joblib.dump(obj, '/tmp/test.pkl')
 ['/tmp/test.pkl']
->>> with open('/tmp/test.pkl', 'rb') as f:
->>>     joblib.load(f)
+*>>> with open('/tmp/test.pkl', 'rb') as f:
+*>>>     joblib.load(f)
 [('a', [1, 2, 3]), ('b', array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))]
 ```
 
@@ -255,7 +254,7 @@ array([[ 0.,  0.,  1.],
 - Use <span style="color:orange">**compression for fast I/O**</span>:<br/>
     &nbsp;&nbsp;&nbsp;support for **zlib, gz, bz2, xz and lzma** compressors 
 ```python
->>> joblib.dump(obj, '/tmp/test.pkl.gz', compress=True, cache_size=0)
+*>>> joblib.dump(obj, '/tmp/test.pkl.gz', compress=True, cache_size=0)
 ['/tmp/test.pkl.gz']
 >>> joblib.load('/tmp/test.pkl.gz')
 ```
@@ -355,18 +354,18 @@ class: left, middle
 **Principle:** configure your backend and wrap the calls to Parallel
 
 ```python
-import time
-import ipyparallel as ipp
-from ipyparallel.joblib import register as register_joblib
-from joblib import parallel_backend, Parallel, delayed
+>>> import time
+>>> import ipyparallel as ipp
+>>> from ipyparallel.joblib import register as register_joblib
+>>> from joblib import parallel_backend, Parallel, delayed
 
 # Setup ipyparallel backend
-register_joblib()
-dview = ipp.Client()[:]
+>>> register_joblib()
+>>> dview = ipp.Client()[:]
 
 # Start the job
-with parallel_backend("ipyparallel", view=dview):
-    Parallel(n_jobs=20, verbose=50)(delayed(time.sleep)(1) for i in range(10))
+*>>> with parallel_backend("ipyparallel", view=dview):
+*>>>     Parallel(n_jobs=20, verbose=50)(delayed(time.sleep)(1) for i in range(10))
 ```
 
 --
@@ -392,17 +391,18 @@ Complete examples exist for:
     </li>
 </ul>
 
+--
+
 ```python
-import numpy as np
-from joblib import Memory
-from joblibhadoop.hdfs import register_hdfs_store_backend
+>>> import numpy as np
+>>> from joblib import Memory
+>>> from joblibhadoop.hdfs import register_hdfs_store_backend
 
 # Register HDFS store backend provider
-register_hdfs_store_backend()
+*>>> register_hdfs_store_backend()
 # Persist data in hdfs://namenode:9000/user/john/cache/joblib
-mem = Memory(location='cache', backend='hdfs',
-             host='namenode', port=9000, user='john', compress=True)
-mem.clear()
+*>>> mem = Memory(location='cache', backend='hdfs',
+*>>>              host='namenode', port=9000, user='john', compress=True)
 multiply = mem.cache(np.multiply)
 ```
 
