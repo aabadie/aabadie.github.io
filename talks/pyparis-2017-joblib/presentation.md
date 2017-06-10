@@ -22,7 +22,7 @@ class: left, middle
 
 ## <center>Agenda</center>
 
-### <span style="margin-left:7em">Joblib in a word</span>
+### <span style="margin-left:7em">An overview of Joblib</span>
 
 ### <span style="margin-left:7em">Joblib for cloud computing</span> 
 
@@ -34,45 +34,53 @@ class: left, middle
 
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-<center><span style="font-size:25px;font-weight:bold">A Python package that runs functions in parallel?</span></center>
+<center><span style="font-size:25px;font-weight:bold">
+A Python package to make your algorithms run faster</span></center>
 
 <br/>
 <br/>
 
 --
 
-<center><span style="font-size:25px;font-style:italic">not only...</span></center>
-
-
---
-
 <br/>
 <br/>
 
-<center><span style="font-size:25px;font-weight:bold"><a style="color:orange    " href=https://pythonhosted.org/joblib/>https://pythonhosted.org/joblib/</a></span></center>
+<center><span style="font-size:25px;font-weight:bold"><a style="color:orange    " href=http://joblib.readthedocs.io/en/latest/>http://joblib.readthedocs.io/en/latest/</a></span></center>
 
 ---
 
 ## Why Joblib?
 
-- Need for algorithms to run fast
+--
 
-    <dd>&#x21d2; <span style="font-weight:bold">Optimize available computing resources</span>
+- Because we want to <span style="color:orange">**make use of all available computing resources**</span>
+
+--
+
+    <dd>&#x21d2; <span style="font-weight:bold">And ensure algorithms run as fast as possible</span>
 
 <br/>
 
 --
 
-- Need to work on large datasets
+- Because we work on <span style="color:orange">**large datasets**</span>
 
-    <dd>&#x21d2; <span style="font-weight:bold">Work on data that fits in RAM</span>
+--
+
+    <dd>&#x21d2; <span style="font-weight:bold">Data that just fits in RAM</span>
 
 <br/>
 
 --
 
-- Keep internal algorithm logic unchanged
+- Because we want the <span style="color:orange">**internal algorithm logic**</span> to remain <span style="color:orange">**unchanged**</span>
+
+--
 
     <dd>&#x21d2; <span style="font-weight:bold">Adapted to embarrassingly parallel problems</span>
 
@@ -80,18 +88,20 @@ class: left, middle
 
 --
 
-- Need for simple API
+- Because we love <span style="color:orange">**simple APIs**</span>
 
-    <dd>&#x21d2; <span style="font-weight:bold">But parallel programming is not user friendly in general</span>
+--
+
+    <dd>&#x21d2; <span style="font-weight:bold">And parallel programming is not user friendly in general</span>
 
 <br/>
 
 ---
 
-## What's provided by Joblib then?
+## How?
 
 
-- Embarrassingly Parallel computing helper
+- <span style="color:orange">Embarrassingly Parallel computing helper</span>
 
     <dd>&#x21d2; <span style="font-weight:bold">make parallel computing easy</span>
 
@@ -99,7 +109,7 @@ class: left, middle
 
 <br/>
 
-- Efficient disk caching to avoid recomputation
+- <span style="color:orange">Efficient disk caching to avoid recomputation</span>
 
     <dd>&#x21d2; <span style="font-weight:bold">computation resource friendly</span>
 
@@ -107,7 +117,7 @@ class: left, middle
 
 <br/>
 
-- Fast I/O persistence
+- <span style="color:orange">Fast I/O persistence</span>
 
     <dd>&#x21d2; <span style="font-weight:bold">limit cache access time</span>
 
@@ -115,9 +125,18 @@ class: left, middle
 
 <br/>
 
-- No dependencies, optimized for numpy arrays
+- <span style="color:orange">No dependencies</span  >, optimized for numpy arrays
 
     <dd>&#x21d2; <span style="font-weight:bold">simple installation and integration in other projects</span>
+
+---
+
+## Overview
+
+
+<br/><br/>
+<br/><br/>
+<center><img src="images/joblib_big_picture_local.png" alt="Logo" style="width: 500px;"/></center>
 
 ---
 
@@ -125,18 +144,15 @@ class: left, middle
 
 <center><img src="images/parallel_principle.png" alt="Logo" style="width: 500px;"/></center>
 
---
-
-- _Internal available backends:_ __threading__ and __multiprocessing__
-
-    <dd>&#x21d2; Single machine computing (works on a Laptop)
+<br/>
 
 --
 
 ```python
 >>> from joblib import Parallel, delayed
 >>> from math import sqrt
-*>>> Parallel(n_jobs=3, verbose=50)(delayed(sqrt)(i**2) for i in range(6))
+
+>>> Parallel(n_jobs=3, verbose=50)(delayed(sqrt)(i**2) for i in range(6))
 [Parallel(n_jobs=3)]: Done   1 tasks      | elapsed:    0.0s
 [...]
 [Parallel(n_jobs=3)]: Done   6 out of   6 | elapsed:    0.0s finished
@@ -145,22 +161,58 @@ class: left, middle
 
 --
 
-- API can be extended with external backends:
+<br/>
 
-    <dd>&#x21d2; Parallel backends available for **distributed**, **ipyparallel**
+&#x21d2; **API can be extended with external backends**
+
+
+---
+
+## Available parallel backends
+
+- <span style="color:orange">Single machine backends</span>:  works on a Laptop
+
+    &#x21d2; **threading**, **multiprocessing** and soon **Loky**
+
+--
+
+- <span style="color:orange">Multi machine backends</span>: available as optional extensions
+
+    &#x21d2; **distributed**, **ipyparallel**, **CMFActivity**, **Hadoop Yarn**
+
+--
+
+- Future: new backends for **Celery**, **Spark**
+
+<br/>
+
+--
+
+```python
+>>> from distributed.joblib import DistributedBackend
+>>> from joblib import (Parallel, delayed,
+>>>                      register_parallel_backend, parallel_backend)
+
+>>> register_parallel_backend('distributed', DistributedBackend)
+
+>>> with parallel_backend('distributed', scheduler_host='dscheduler:8786'):
+>>>     Parallel(n_jobs=3)(delayed(sqrt)(i**2) for i in range(6))
+[...]
+```
 
 ---
 
 ## Caching on disk
 
-- Use a __memoize__ pattern with the **Memory** object
+- Use a <span style="color:orange">__memoize__</span> pattern with the **Memory** object
 
 ```python
 >>> from joblib import Memory
-*>>> mem = Memory(cachedir='/tmp/joblib')
 >>> import numpy as np
 >>> a = np.vander(np.arange(3)).astype(np.float)
-*>>> square = mem.cache(np.square)
+
+>>> mem = Memory(cachedir='/tmp/joblib')
+>>> square = mem.cache(np.square)
 >>> b = square(a)
 ________________________________________________________________________________
 [Memory] Calling square...
@@ -169,16 +221,16 @@ square(array([[ 0.,  0.,  1.],
        [ 4.,  2.,  1.]]))
 ___________________________________________________________square - 0...s, 0.0min
 
-*>>> c = square(a) # no recomputation
+>>> c = square(a) # no recomputation
+array([[ 0.,  0.,  1.],
+[...]
 ```
 
 --
 
-- Use __md5__ hash of input parameters
-
 - Results are persisted on disk for later reuse
 
-- **Least Recently Used** (LRU) cache replacement policy
+- <span style="color:orange">**Least Recently Used (LRU)**</span> cache replacement policy
 
 ---
 
@@ -186,47 +238,48 @@ ___________________________________________________________square - 0...s, 0.0mi
 
 - Convert/create __an arbitrary object__ into/from a __string of bytes__
 
-- **Single file persistence**, can be used with file objects
+- <span style="color:orange">**Streamable persistence**</span> to/from file or socket objects
 ```python
 >>> import numpy as np
 >>> import joblib
 >>> obj = [('a', [1, 2, 3]), ('b', np.arange(10))]
-*>>> joblib.dump(obj, '/tmp/test.pkl')
+>>> joblib.dump(obj, '/tmp/test.pkl')
 ['/tmp/test.pkl']
-*>>> with open('/tmp/test.pkl', 'rb') as f:
-*>>>     joblib.load(f)
+>>> with open('/tmp/test.pkl', 'rb') as f:
+>>>     joblib.load(f)
 [('a', [1, 2, 3]), ('b', array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))]
 ```
 
 --
 
-- Use compression for fast I/O:<br/>
+- Use <span style="color:orange">**compression for fast I/O**</span>:<br/>
     &nbsp;&nbsp;&nbsp;support for **zlib, gz, bz2, xz and lzma** compressors 
 ```python
-*>>> joblib.dump(obj, '/tmp/test.pkl.gz', compress=True, cache_size=0)
+>>> joblib.dump(obj, '/tmp/test.pkl.gz', compress=True, cache_size=0)
 ['/tmp/test.pkl.gz']
-*>>> joblib.load('/tmp/test.pkl.gz')
+>>> joblib.load('/tmp/test.pkl.gz')
 ```
-
---
-
-- Access numpy arrays with __`np.memmap`__ for __out-of-core computing__ or 
-for sharing data between multiple workers
 
 ---
 
 ## The ecosystem
 
-- 54 differents contributors since the beginning in 2008
-<br/><br/>
-<span style="margin-left:22em"><img src="images/joblib_contributors.png" alt="Logo" style="width: 200px;"/></span>
-<br/>
+- <span style="color:orange">**54 differents contributors**</span> since the beginning in 2008
+
+<div style:"position:relative">
+<span style="margin-left:22em">
+  <img src="images/joblib_contributors.png" alt="Logo" style="width:250px;"/><br/>
+  <span style="font-style: italic;font-size:14px;margin-left:35em">
+    Contributors per month
+  </span>
+</span>
+</div>
 
 --
 
-- Joblib is the parallel/caching backend used in Scikit-Learn
+- Joblib is the parallel/caching backend <span style="color:orange">**used in Scikit-Learn**</span>
 <br/><br/>
-<span style="margin-left:22em"><img src="images/sklearn.png" alt="Logo" style="width: 200px;"/></span>
+<span style="margin-left:25em"><img src="images/sklearn.png" alt="Logo" style="width: 180px;"/></span>
 
 --
 
@@ -235,7 +288,7 @@ for sharing data between multiple workers
 
 --
 <br/>
-- Stable and mature code base
+- <span style="color:orange">**Stable and mature**</span> code base
 <br/>
 
 <center>
@@ -272,14 +325,14 @@ class: left, middle
 
 --
 
-- Lots of Big Data processing solutions:
+- Existing solutions for processing Big Data:
 
 <span style="margin-left:20em"><img src="images/spark-logo-trademark.png" alt="ec2" style="width: 120px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="images/hadoop.png" alt="ec2" style="width: 120px;"/></span>
 
 --
 
-- Lots of technologies:  Docker containers, orchestrators (SWARM, Kubernetes)
+- Existing container orchestration solutions: Docker SWARM, Kubernetes
 
 <span style="margin-left:20em"><img src="images/docker-swarm.png" alt="ec2" style="width: 120px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="images/kubernetes.png" alt="ec2" style="width: 120px;"/></span>
@@ -287,11 +340,17 @@ class: left, middle
 --
 <br/>
 
-<center><span style="font-size:25px;font-weight:bold">How can Joblib be used there?</span></center>
+<center><span style="font-size:25px;font-weight:bold">How can Joblib be used with them?</span></center>
 
 ---
 
-## Extend parallel backend
+## The general idea
+
+<center><img src="images/joblib_big_picture_cloud.png" alt="ec2" style="width: 700px;"/></center>
+
+---
+
+## Use pluggable multi-machine parallel backends
 
 **Principle:** configure your backend and wrap the calls to Parallel
 
@@ -304,6 +363,7 @@ from joblib import parallel_backend, Parallel, delayed
 # Setup ipyparallel backend
 register_joblib()
 dview = ipp.Client()[:]
+
 # Start the job
 with parallel_backend("ipyparallel", view=dview):
     Parallel(n_jobs=20, verbose=50)(delayed(time.sleep)(1) for i in range(10))
@@ -311,17 +371,17 @@ with parallel_backend("ipyparallel", view=dview):
 
 --
 
-Other examples exist for:
+Complete examples exist for:
 
 <ul>
 <li> Dask distributed: <a style="color:orange" href=https://github.com/ogrisel/docker-distributed>https://github.com/ogrisel/docker-distributed</a></li>
 <br/>
-<li>Hadoop YARN: <a style="color:orange" href=https://github.com/joblib/joblib-hadoop>https://github.com/joblib/joblib-hadoop</a></li>
+<li>Hadoop Yarn: <a style="color:orange" href=https://github.com/joblib/joblib-hadoop>https://github.com/joblib/joblib-hadoop</a></li>
 </ul>
 
 ---
 
-## Extend caching with store backends
+## Use pluggable store backends
 
 <ul>
     <li>Extends Memory API with other store providers</li>
@@ -340,8 +400,8 @@ from joblibhadoop.hdfs import register_hdfs_store_backend
 # Register HDFS store backend provider
 register_hdfs_store_backend()
 # Persist data in hdfs://namenode:9000/user/john/cache/joblib
-*mem = Memory(location='cache', backend='hdfs',
-*             host='namenode', port=9000, user='john', compress=True)
+mem = Memory(location='cache', backend='hdfs',
+             host='namenode', port=9000, user='john', compress=True)
 mem.clear()
 multiply = mem.cache(np.multiply)
 ```
@@ -359,6 +419,44 @@ Store backends available:
 
 ---
 
+## Using Hadoop with Joblib
+
+<ul>
+<li>joblib-hadoop package: <a style="color:orange" href=https://github.com/joblib/joblib-hadoop>https://github.com/joblib/joblib-hadoop</a></li>
+</ul>
+
+--
+
+- Provides **docker containers helpers** for developing and testing
+
+<br/>
+<span style="margin-left:2em;margin-top:0.5em"><img src="images/hadoop_cluster.png" alt="ec2" style="width: 600px;"/></span>
+
+--
+
+<div style="margin-left:2em;margin-top:2em">
+    &#x21d2; no need for a production Hadoop cluster<br/>
+    <span style="position:absolute;margin-top:0.5em">&#x21d2; make developper life easier: <span style="font-weight:bold">CI on Travis is possible</span></span>
+</div>
+
+--
+
+<div style="position:absolute;margin-left:30em;margin-top:-1em"><img src="images/tested_criteo.png" alt="ec2" style="width: 180px;"/></div>
+
+---
+
+class: left, middle
+
+## <center>Agenda</center>
+
+### <span style="margin-left:7em">Joblib in a word</span>
+
+### <span style="margin-left:7em">Joblib for cloud computing</span> 
+
+### <span style="margin-left:6em;font-weight:bold">&#x21d2;Future work and conclusion</span>
+
+---
+
 ## Future work
 
 - In-memory object caching
@@ -369,28 +467,90 @@ Store backends available:
 
 --
 
-- Allow overriding of parallel backends
-
-    &#x21d2; See PR: https://github.com/joblib/joblib/pull/524
-
-<br/>
-
---
-
-- Replace multiprocessing parallel backend with Loky:
-
-    &#x21d2; See PR: https://github.com/joblib/joblib/pull/516
+<ul>
+    <li>Allow <span style="font-style:italic">overriding</span> of parallel backends</li>
+    <br/>
+    &#x21d2; See PR: <a style="color:orange;font-weight:bold" href=https://github.com/joblib/joblib/pull/524>https://github.com/joblib/joblib/pull/524</a>
+    </li>
+</ul>
 
 <br/>
 
 --
 
-- Extend support for Cloud providers
+<ul>
+    <li>Replace multiprocessing parallel backend with <span style='font-weight:bold'>Loky</span></li>
+    <br/>
+    &#x21d2; See PR: <a style="color:orange;font-weight:bold" href=https://github.com/joblib/joblib/pull/516>https://github.com/joblib/joblib/pull/516</a>
+    </li>
+</ul>
 
-    &#x21d2; Using Apache libcloud: give access to a lot more Cloud providers
+<br/>
+
+--
+
+- Extend Cloud providers support
+
+    &#x21d2; Using **Apache libcloud**: give access to a lot more Cloud providers
 
 ---
 
-class: center, middle
+## Conclusion
+
+--
+
+- Parallel helper is <span style="color:orange">**adapted to embarassingly parallel problems**</span>
+
+<br/>
+
+--
+
+- Already a lot of <span style="color:orange">**parallel backends available**</span>
+
+    &#x21d2; threading, multiprocessing, loky (soon), distributed, ipyparallel, Yarn
+
+<br/>
+
+--
+
+- Use <span style="color:orange">**caching techniques**</span> to avoid recomputation
+
+<br/>
+
+--
+
+- <span style="color:orange">**Store backends**</span> available  &#x21d2; **HDFS (Hadoop)** and **AWS S3**
+
+<br/>
+
+--
+
+- Use Joblib either **on your laptop** or **in a Cloud** with <span style="color:orange">**very few code changes**</span>
+
+---
+
+class: center
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 ## Thanks!
+
+<br/>
+<br/>
+
+<a href="https://sed.saclay.inria.fr/"><img src="images/sed_saclay.jpg" alt="Logo" style="width: 100px;"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/lesteve"><img src="images/lesteve.png" alt="Logo" style="width: 100px;"/></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/GaelVaroquaux"><img src="images/gaelvaroquaux.png" alt="Logo" style="width: 100px;"/></a>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/ogrisel"><img src="images/ogrisel.jpeg" alt="Logo" style="width: 100px;"/></a>
+<br/><br/>
+<a href="http://www.scikit-learn.org"><img src="images/sklearn.png" alt="Logo" style="height: 50px;"/></a>&nbsp;&nbsp;&nbsp;
+<a href="http://www.criteo.com"><img src="images/criteo.png" alt="Logo" style="height: 50px;"/></a>&nbsp;&nbsp;&nbsp;
+<img src="images/wendelin.png" alt="Logo" style="height: 50px;"/>&nbsp;&nbsp;&nbsp;
+<a href="http://www.inria.fr"><img src="images/inria_logo.png" alt="Logo" style="height: 50px;"/></a>
