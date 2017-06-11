@@ -20,7 +20,7 @@ Alexandre Abadie
 
 class: left, middle
 
-## <center>Agenda</center>
+## <center>Outline</center>
 
 ### <span style="margin-left:7em">An overview of Joblib</span>
 
@@ -265,25 +265,18 @@ array([[ 0.,  0.,  1.],
 
 - <span style="color:orange">**54 different contributors**</span> since the beginning in 2008
 
-<div style:"position:relative">
-<span style="margin-left:22em">
-  <img src="images/joblib_contributors.png" alt="Logo" style="width:250px;"/><br/>
-  <span style="font-style: italic;font-size:14px;margin-left:35em">
+<center>
+  <img src="images/joblib_contributors.png" alt="Logo" style="width:350px;"/><br/>
+  <span style="font-style: italic;font-size:18px;text-align:center">
     Contributors per month
   </span>
-</span>
-</div>
+</center>
 
 --
 
 - Joblib is the parallel/caching backend <span style="color:orange">**used in Scikit-Learn**</span>
 <br/><br/>
-<span style="margin-left:25em"><img src="images/sklearn.png" alt="Logo" style="width: 180px;"/></span>
-
---
-
-- Installed on 1.5% of the computers running Debian
-<br/>
+<center><img src="images/sklearn.png" alt="Logo" style="width: 180px;"/></center>
 
 --
 <br/>
@@ -302,7 +295,7 @@ array([[ 0.,  0.,  1.],
 
 class: left, middle
 
-## <center>Agenda</center>
+## <center>Outline</center>
 
 ### <span style="margin-left:7em">Joblib in a word</span>
 
@@ -316,25 +309,29 @@ class: left, middle
 
 - Lots of Cloud providers on the market:
 
-<img src="images/amazon_ec2.png" alt="ec2" style="width: 120px;"/>&nbsp;&nbsp;
-<img src="images/amazon_s3.png" alt="ec2" style="width: 120px;"/>&nbsp;&nbsp;
-<img src="images/rackspace.png" alt="gcp" style="width: 120px;"/>&nbsp;&nbsp;
-<img src="images/google_cloud_platform.png" alt="gcp" style="width: 120px;"/>&nbsp;&nbsp;
-<img src="images/google_cloud_storage.png" alt="gcp" style="width: 120px;"/>
+<img src="images/amazon_ec2.png" alt="ec2" style="width: 110px;"/>&nbsp;&nbsp;
+<img src="images/amazon_s3.png" alt="ec2" style="width: 110px;"/>&nbsp;&nbsp;
+<img src="images/rackspace.png" alt="gcp" style="width: 110px;"/>&nbsp;&nbsp;
+<img src="images/google_cloud_platform.png" alt="gcp" style="width: 110px;"/>&nbsp;&nbsp;
+<img src="images/google_cloud_storage.png" alt="gcp" style="width: 110px;"/>&nbsp;&nbsp;
+<img src="images/slapos.png" alt="gcp" style="width: 100px;"/>
 
 --
 
 - Existing solutions for processing Big Data:
 
-<span style="margin-left:20em"><img src="images/spark-logo-trademark.png" alt="ec2" style="width: 120px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="images/hadoop.png" alt="ec2" style="width: 120px;"/></span>
+<span style="margin-left:20em">
+<img src="images/spark-logo-trademark.png" alt="ec2" style="width: 120px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="images/hadoop.png" alt="ec2" style="width: 120px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="images/wendelin.png" alt="ec2" style="height: 50px;"/>
+</span>
 
 --
 
 - Existing container orchestration solutions: Docker SWARM, Kubernetes
 
-<span style="margin-left:20em"><img src="images/docker-swarm.png" alt="ec2" style="width: 120px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="images/kubernetes.png" alt="ec2" style="width: 120px;"/></span>
+<span style="margin-left:20em"><img src="images/docker-swarm.png" alt="ec2" style="width: 110px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="images/kubernetes.png" alt="ec2" style="width: 110px;"/></span>
 
 --
 <br/>
@@ -449,7 +446,7 @@ Store backends available:
 
 class: left, middle
 
-## <center>Agenda</center>
+## <center>Outline</center>
 
 ### <span style="margin-left:7em">Joblib in a word</span>
 
@@ -473,6 +470,8 @@ class: left, middle
     <li>Allow <span style="font-style:italic">overriding</span> of parallel backends</li>
     <br/>
     &#x21d2; See PR: <a style="color:orange;font-weight:bold" href=https://github.com/joblib/joblib/pull/524>https://github.com/joblib/joblib/pull/524</a>
+    <br/><br/>
+    &#x21d2; Seamless distributed computing in scikit-learn
     </li>
 </ul>
 
@@ -509,7 +508,7 @@ class: left, middle
 
 - Already a lot of <span style="color:orange">**parallel backends available**</span>
 
-    &#x21d2; threading, multiprocessing, loky (soon), distributed, ipyparallel, Yarn
+    &#x21d2; threading, multiprocessing, loky, CMFActivity distributed, ipyparallel, Yarn
 
 <br/>
 
