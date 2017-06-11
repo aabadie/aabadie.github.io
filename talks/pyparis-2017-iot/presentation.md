@@ -66,7 +66,7 @@ class: left, middle
 
 ### <span style="margin-left:6em">What IoT are we talking about ?</span>
 
-### <span style="margin-left:6em;font-weight:bold">&#x21d2; The usual protocols for IoT</span>
+### <span style="margin-left:5em;font-weight:bold">&#x21d2; The usual protocols for IoT</span>
 
 ### <span style="margin-left:6em">Why Pyaiot?</span>
 
@@ -136,17 +136,6 @@ Implementations exist for other languages: <strong><a href=http://coap.technolog
 
 ## Usual protocols for IoT: MQTT
 
-* Based on publication/subscriptions to topics pattern
-
-* Topics have a path form: `this/is/a/topic`
-
-* Requires a broker in-between clients
-
-* MQTT Sensor Network (MQTT-SN): adapted for constrained devices with 802.15.4
-  radios
-
-* MQTT v3.1.1 is an [OASIS](https://en.wikipedia.org/wiki/OASIS_(organization) standard
-
 <center>
     <img src="images/pub-sub-model.png" alt="MQTT model" style="width:450px;"/>
     <div style="position: absolute;right: 100px;">
@@ -155,6 +144,16 @@ Implementations exist for other languages: <strong><a href=http://coap.technolog
       </span>
     </div>
 </center>
+
+<br/>
+
+* Based on publication/subscriptions to topics pattern
+
+* Topics have a path form: `this/is/a/topic`
+
+* MQTT v3.1.1 is an [OASIS](https://en.wikipedia.org/wiki/OASIS_(organization) standard
+
+* MQTT Sensor Network (MQTT-SN): adapted for constrained devices
 
 ---
 
@@ -180,7 +179,7 @@ class: left, middle
 
 ### <span style="margin-left:6em">The usual protocols for IoT</span>
 
-### <span style="margin-left:6em;font-weight:bold">&#x21d2; Why Pyaiot?</span>
+### <span style="margin-left:5em;font-weight:bold">&#x21d2; Why Pyaiot?</span>
 
 ### <span style="margin-left:6em">How we built Pyaiot</span>
 
@@ -251,7 +250,7 @@ class: left, middle
 
 ### <span style="margin-left:6em">Why Pyaiot?</span>
 
-### <span style="margin-left:6em;font-weight:bold">&#x21d2; How we built Pyaiot</span>
+### <span style="margin-left:5em;font-weight:bold">&#x21d2; How we built Pyaiot</span>
 
 ### <span style="margin-left:6em">Lessons learned</span>
 
@@ -277,7 +276,7 @@ Permanent web showcase for RIOT available at <br/><a href=http://riot-demo.inria
 
 ## Pyaiot services
 
-<img src="images/pyaiot_services.png" alt="Pyaiot overview" style="width:800px;"/>
+<span style="margin-left:-1.5em"><img src="images/pyaiot_services.png" alt="Pyaiot overview" style="width:800px;"/></span>
 
 - Gateways are clients running in private networks
 
@@ -320,6 +319,9 @@ Dependent from the protocol:
 ```
     </.well-known/core>;ct=40,</board>;ct=0,</mcu>;ct=0,</led>;ct=0
 ```
+
+--
+
 - MQTT: a developer design choice
 
 --
@@ -401,7 +403,11 @@ Dependent from the protocol:
 
 - Add services for data persistence: time series, data analysis
 
+--
+
 - Provide services in containers
+
+--
 
 - Better integration:
 
@@ -413,6 +419,8 @@ Dependent from the protocol:
 
     - with Cloud providers:
     <dd>Amazon AWS, Google Cloud, etc
+
+--
 
 - Better testing/documentation
 
@@ -430,7 +438,7 @@ class: left, middle
 
 ### <span style="margin-left:6em">How we built Pyaiot</span>
 
-### <span style="margin-left:6em;font-weight:bold">&#x21d2; Lessons learned</span>
+### <span style="margin-left:5em;font-weight:bold">&#x21d2; Lessons learned</span>
 
 ### <span style="margin-left:6em">Conclusion</span>
 
@@ -442,7 +450,10 @@ class: left, middle
 
 --
 
-- Asyncio new syntax only available after Python 3.5
+- Asyncio new syntax available with Python >= 3.5
+
+--
+
   <dd> ... but Python 3.4.2 available on Raspbian
 
 ```python
@@ -455,7 +466,10 @@ asyncio.get_event_loop().create_task(my_coroutine)  # scheduled in ioloop
 asyncio.ensure_future(my_coroutine)  # scheduled in ioloop, requires python 3.4.4
 ```
 
-with python >= 3.5:
+--
+
+with python 3.5 new syntax:
+
 ```python
 async def my_coroutine():
     my_long_call()
