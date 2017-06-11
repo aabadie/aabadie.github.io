@@ -18,13 +18,13 @@ Alexandre Abadie, Inria
 
 class: left, middle
 
-## <center>Agenda</center>
+## <center>Outline</center>
 
 ### <span style="margin-left:6em">What IoT are we talking about ?</span>
 
 ### <span style="margin-left:6em">The usual protocols for IoT</span>
 
-### <span style="margin-left:6em">Why pyaiot?</span>
+### <span style="margin-left:6em">Pyaiot, connecting objects to the web</span>
 
 ### <span style="margin-left:6em">How we built Pyaiot</span>
 
@@ -62,13 +62,13 @@ The Internet of Things today
 
 class: left, middle
 
-## <center>Agenda</center>
+## <center>Outline</center>
 
 ### <span style="margin-left:6em">What IoT are we talking about ?</span>
 
 ### <span style="margin-left:5em;font-weight:bold">&#x21d2; The usual protocols for IoT</span>
 
-### <span style="margin-left:6em">Why Pyaiot?</span>
+### <span style="margin-left:6em">Pyaiot, connecting objects to the web</span>
 
 ### <span style="margin-left:6em">How we built Pyaiot</span>
 
@@ -173,13 +173,13 @@ Implementations exist for other languages: <strong><a href=http://coap.technolog
 
 class: left, middle
 
-## <center>Agenda</center>
+## <center>Outline</center>
 
 ### <span style="margin-left:6em">What IoT are we talking about ?</span>
 
 ### <span style="margin-left:6em">The usual protocols for IoT</span>
 
-### <span style="margin-left:5em;font-weight:bold">&#x21d2; Why Pyaiot?</span>
+### <span style="margin-left:5em;font-weight:bold">&#x21d2; Pyaiot, connecting objects to the web</span>
 
 ### <span style="margin-left:6em">How we built Pyaiot</span>
 
@@ -204,17 +204,14 @@ class: left, middle
 - Heterogeneous protocol support
     <br/><br/><dd>&#x21d2; **various IoT protocols exist**
 
---
-
-- No simple and Open Source solution
-    <br/><br/><dd>&#x21d2; enforced to use Cloud provider proprietary solutions
-
 ---
 
-## How?
+## General guidelines
 
 
 - Open-Source and simple design&#x21d2; <strong>can be deployed by anyone</strong>
+
+<center><strong><a href=https://github.com/pyaiot/pyaiot>https://github.com/pyaiot/pyaiot</a></strong></center>
 
 --
 
@@ -242,13 +239,13 @@ class: left, middle
 
 class: left, middle
 
-## <center>Agenda</center>
+## <center>Outline</center>
 
 ### <span style="margin-left:6em">What IoT are we talking about ?</span>
 
 ### <span style="margin-left:6em">The usual protocols for IoT</span>
 
-### <span style="margin-left:6em">Why Pyaiot?</span>
+### <span style="margin-left:6em">Pyaiot, connecting objects to the web</span>
 
 ### <span style="margin-left:5em;font-weight:bold">&#x21d2; How we built Pyaiot</span>
 
@@ -263,14 +260,14 @@ class: left, middle
 <img src="images/pyaiot_overview.png" alt="Pyaiot overview" style="width:800px;"/>
 
 <div style="text-align:center"><span style="font-style:bold">
-<span style="width:100%;font-style:bold">
-<strong><a href=https://github.com/pyaiot/pyaiot>https://github.com/pyaiot/pyaiot</a></strong>
-</span>
-<br/><br/>
 Permanent web showcase for RIOT available at <br/><a href=http://riot-demo.inria.fr>http://riot-demo.inria.fr</a></span>
 </div>
 
+---
 
+## Pyaiot: The web dashboard
+
+<img src="images/dashboard.png" alt="Pyaiot overview" style="width:800px;"/>
 
 ---
 
@@ -290,10 +287,13 @@ Permanent web showcase for RIOT available at <br/><a href=http://riot-demo.inria
 
 ## Technical choices
 
-<div style="position:absolute;margin-left:30em;margin-top:-1em"><a href=http://vuejs.org><img src="images/vuejs.png" alt="vuejs" style="width:50px;"/></a></div>
-* Web dashboard developped with **Vue.js** &nbsp; http://vuejs.org
+<center><img src="images/pyaiot_services_impl.png" alt="Pyaiot overview" style="width:500px;"/></center>
 
-<div style="position:absolute;margin-left:30em;margin-top:-0.7em"><a href=http://www.tornadoweb.org/en/stable/><img src="images/tornado.png" alt="tornado" style="width:150px;"/></a></div>
+
+<div style="position:absolute;margin-left:30em;margin-top:0.2em"><a href=http://vuejs.org><img src="images/vuejs.png" alt="vuejs" style="width:50px;"/></a></div>
+* Web dashboard developed with **Vue.js** &nbsp; http://vuejs.org
+
+<div style="position:absolute;margin-left:30em;margin-top:-0.2em"><a href=http://www.tornadoweb.org/en/stable/><img src="images/tornado.png" alt="tornado" style="width:150px;"/></a></div>
 * Service applications based on **Tornado** framework with:
     * HTTP server
     * Websocket server and client
@@ -302,52 +302,9 @@ Permanent web showcase for RIOT available at <br/><a href=http://riot-demo.inria
 
 * **HBMQTT** for MQTT protocol support
 
-All python packages are asyncio based/compatible &#x21d2; **simplify integration**
-
-
-<center><img src="images/pyaiot_services_impl.png" alt="Pyaiot overview" style="width:500px;"/></center>
-
----
-
-## Resource discovery
-
-<center>How to discover the resources exposed by a node ?</center>
-
-Dependent from the protocol:
-
-- CoAP: `.well-known/core` endpoint
-```
-    </.well-known/core>;ct=40,</board>;ct=0,</mcu>;ct=0,</led>;ct=0
-```
-
 --
 
-- MQTT: a developer design choice
-
---
-
-<center>
-<img src="images/pyaiot_gateway_sequence.png" alt="Pyaiot gateway sequence" style="width:400px;"/><br/>
-<span style="width:100%;font-size:15px;font-style:bold">Resource discovery sequence</span>
-
-</center>
-
----
-
-## The CoAP gateway in detail
-
-- Nodes declares themselves to the gateway at startup
-
-- The gateway runs a CoAP server to receive notifications from nodes
-
-- Each node also runs a CoAP server
-
-<br/>
-<br/>
-
---
-
-<center><img src="images/pyaiot_gateway_coap.png" alt="Pyaiot gateway CoAP" style="width:400px;"/></center>
+&#x21d2; All python packages are asyncio based/compatible &#x21d2; **simplify integration**
 
 ---
 
@@ -399,42 +356,15 @@ Dependent from the protocol:
 
 ---
 
-## Future work
-
-- Add services for data persistence: time series, data analysis
-
---
-
-- Provide services in containers
-
---
-
-- Better integration:
-
-    -  with other high-level IoT solutions: <br/>
-    <dd>Node-RED, OneM2M, FIWARE, SensorCloud, ThingSpeak
-
-    - with gateways from IoT providers: <br/>
-    <dd>SigFox, Actility ThingPark, LoRa gateways
-
-    - with Cloud providers:
-    <dd>Amazon AWS, Google Cloud, etc
-
---
-
-- Better testing/documentation
-
----
-
 class: left, middle
 
-## <center>Agenda</center>
+## <center>Outline</center>
 
 ### <span style="margin-left:6em">What IoT are we talking about ?</span>
 
 ### <span style="margin-left:6em">The usual protocols for IoT</span>
 
-### <span style="margin-left:6em">Why pyaiot?</span>
+### <span style="margin-left:6em">Pyaiot, connecting objects to the web</span>
 
 ### <span style="margin-left:6em">How we built Pyaiot</span>
 
@@ -477,33 +407,6 @@ async def my_coroutine():
 await my_coroutine()  # wait until done
 asyncio.ensure_future(my_coroutine) # scheduled in ioloop
 ```
-
----
-
-## Using asyncio
-
-- Easy to integrate with Tornado
-
-    - What about <a href=http://aiohttp.readthedocs.io/en/stable/>aiohttp</a> ?
-    - Others ?
-
---
-
-- How to test asynchronous code ?<br/>
-
-    - <a href=https://github.com/eugeniy/pytest-asyncio>pytest-asyncio</a>,
-    - <a href=https://github.com/eugeniy/pytest-tornado>pytest-tornado</a>,
-    - <a href=https://github.com/tylerlaberge/Jasper>Jasper</a>
-
---
-
-- Asyncio is part of the Python standard library: the future !
-
----
-
-class: center, middle
-
-## New python project &#x21d2; Python 3 only
 
 ---
 
