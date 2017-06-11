@@ -4,7 +4,7 @@ class: center, middle
 
 ## Cloud computing made easy
 
-### with 
+### in 
 
 # Joblib
 
