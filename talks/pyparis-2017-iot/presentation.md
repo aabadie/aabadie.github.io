@@ -147,13 +147,13 @@ Implementations exist for other languages: <strong><a href=http://coap.technolog
 
 <br/>
 
-* Based on publication/subscriptions to topics pattern
+- Based on publication/subscriptions to topics pattern
 
-* Topics have a path form: `this/is/a/topic`
+- Topics have a path form: `this/is/a/topic`
 
-* MQTT v3.1.1 is an [OASIS](https://en.wikipedia.org/wiki/OASIS_(organization) standard
+- MQTT v3.1.1 is an [OASIS](https://en.wikipedia.org/wiki/OASIS_(organization) standard
 
-* MQTT Sensor Network (MQTT-SN): adapted for constrained devices
+- **MQTT Sensor Network (MQTT-SN)**: adapted for constrained devices
 
 ---
 
@@ -237,6 +237,22 @@ class: left, middle
 
 ---
 
+## Pyaiot overview
+
+<img src="images/pyaiot_overview.png" alt="Pyaiot overview" style="width:800px;"/>
+
+<div style="text-align:center"><span style="font-style:bold">
+Permanent web showcase for RIOT available at <br/><a href=http://riot-demo.inria.fr>http://riot-demo.inria.fr</a></span>
+</div>
+
+---
+
+## Pyaiot: The web dashboard
+
+<img src="images/dashboard.png" alt="Pyaiot overview" style="width:800px;"/>
+
+---
+
 class: left, middle
 
 ## <center>Outline</center>
@@ -255,19 +271,9 @@ class: left, middle
 
 ---
 
-## Pyaiot: overview
+## Pyaiot overview
 
 <img src="images/pyaiot_overview.png" alt="Pyaiot overview" style="width:800px;"/>
-
-<div style="text-align:center"><span style="font-style:bold">
-Permanent web showcase for RIOT available at <br/><a href=http://riot-demo.inria.fr>http://riot-demo.inria.fr</a></span>
-</div>
-
----
-
-## Pyaiot: The web dashboard
-
-<img src="images/dashboard.png" alt="Pyaiot overview" style="width:800px;"/>
 
 ---
 
@@ -304,7 +310,7 @@ Permanent web showcase for RIOT available at <br/><a href=http://riot-demo.inria
 
 --
 
-&#x21d2; All python packages are asyncio based/compatible &#x21d2; **simplify integration**
+&#x21d2; All python packages are **asyncio** based/compatible &#x21d2; **simplify integration**
 
 ---
 
@@ -420,7 +426,7 @@ asyncio.ensure_future(my_coroutine) # scheduled in ioloop
 
 --
 
-- Off-the-shelf packages for IoT available
+- Off-the-shelf packages for IoT available: Aiocoap, HBMQTT
 
 --
 
@@ -428,19 +434,31 @@ asyncio.ensure_future(my_coroutine) # scheduled in ioloop
 
 .center[**&#x21d2; Python is adapted to IoT**]
 
----
+<center><img src="images/python.jpeg" alt="Python" style="width:100px;"/></center>
 
-class: middle
+---
 
 ## <center>Conclusion</center>
 
 - Widely used protocol in IoT is MQTT
 
-- We need adapted protocols required for constrained devices: CoAP, MQTT-SN
+- Adapted protocols are required for constrained devices (microcontrollers)
 
-- We easily built an application following the initial requirements: Pyaiot
+<dd>&#x21d2; CoAP, MQTT-SN</dd>
+
+--
+
+- We easily built an application following the initial requirements
+
+<dd> &#x21d2; Pyaiot: <a href=https://github.com/pyaiot/pyaiot>https://github.com/pyaiot/pyaiot</a></dd>
+
+--
 
 - Asyncio made things simpler... after some headaches
+
+--
+
+- Pyaiot is still work in progress... even if it works pretty well
 
 ---
 
