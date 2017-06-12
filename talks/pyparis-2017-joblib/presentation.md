@@ -50,9 +50,42 @@ A Python package to make your algorithms run faster</span></center>
 <br/>
 <br/>
 
-<center><span style="font-size:25px;font-weight:bold"><a style="color:orange    " href=http://joblib.readthedocs.io/en/latest/>http://joblib.readthedocs.io/en/latest/</a></span></center>
+<center><span style="font-size:25px;font-weight:bold"><a style="color:orange    " href=http://joblib.readthedocs.io>http://joblib.readthedocs.io</a></span></center>
 
 ---
+
+## The ecosystem
+
+- <span style="color:orange">**54 different contributors**</span> since the beginning in 2008
+
+<center>
+  <img src="images/joblib_contributors.png" alt="Logo" style="width:350px;"/><br/>
+  <span style="font-style: italic;font-size:18px;text-align:center">
+    Contributors per month
+  </span>
+</center>
+
+--
+
+- Joblib is the computing backend <span style="color:orange">**used by Scikit-Learn**</span>
+<br/><br/>
+<center><img src="images/sklearn.png" alt="Logo" style="width: 180px;"/></center>
+
+--
+<br/>
+- <span style="color:orange">**Stable and mature**</span> code base
+<br/>
+
+<center>
+    <span style="font-size:25px;font-weight:bold">
+        <a style="color:orange" href=https://github.com/joblib/joblib>
+            https://github.com/joblib/joblib
+        </a>
+    </span>
+</center>
+
+---
+
 
 ## Why Joblib?
 
@@ -142,12 +175,6 @@ A Python package to make your algorithms run faster</span></center>
 
 ## Parallel helper
 
-<center><img src="images/parallel_principle.png" alt="Logo" style="width: 500px;"/></center>
-
-<br/>
-
---
-
 ```python
 >>> from joblib import Parallel, delayed
 >>> from math import sqrt
@@ -159,6 +186,8 @@ A Python package to make your algorithms run faster</span></center>
 [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
 ```
 
+<center><img src="images/parallel_principle.png" alt="Logo" style="width: 500px;"/></center>
+
 --
 
 <br/>
@@ -168,7 +197,7 @@ A Python package to make your algorithms run faster</span></center>
 
 ---
 
-## Available parallel backends
+## Parallel backends
 
 - <span style="color:orange">Single machine backends</span>:  works on a Laptop
 
@@ -179,12 +208,6 @@ A Python package to make your algorithms run faster</span></center>
 - <span style="color:orange">Multi machine backends</span>: available as optional extensions
 
     &#x21d2; **distributed**, **ipyparallel**, **CMFActivity**, **Hadoop Yarn**
-
---
-
-- Future: new backends for **Celery**, **Spark**
-
-<br/>
 
 --
 
@@ -199,6 +222,10 @@ A Python package to make your algorithms run faster</span></center>
 [...]
 ```
 
+--
+
+- Future: new backends for **Celery**, **Spark**
+
 ---
 
 ## Caching on disk
@@ -212,6 +239,11 @@ A Python package to make your algorithms run faster</span></center>
 
 *>>> mem = Memory(cachedir='/tmp/joblib')
 *>>> square = mem.cache(np.square)
+```
+
+--
+
+```
 >>> b = square(a)
 ________________________________________________________________________________
 [Memory] Calling square...
@@ -226,8 +258,6 @@ array([[ 0.,  0.,  1.],
 ```
 
 --
-
-- Results are persisted on disk for later reuse
 
 - <span style="color:orange">**Least Recently Used (LRU)**</span> cache replacement policy
 
@@ -258,38 +288,6 @@ array([[ 0.,  0.,  1.],
 ['/tmp/test.pkl.gz']
 >>> joblib.load('/tmp/test.pkl.gz')
 ```
-
----
-
-## The ecosystem
-
-- <span style="color:orange">**54 different contributors**</span> since the beginning in 2008
-
-<center>
-  <img src="images/joblib_contributors.png" alt="Logo" style="width:350px;"/><br/>
-  <span style="font-style: italic;font-size:18px;text-align:center">
-    Contributors per month
-  </span>
-</center>
-
---
-
-- Joblib is the parallel/caching backend <span style="color:orange">**used in Scikit-Learn**</span>
-<br/><br/>
-<center><img src="images/sklearn.png" alt="Logo" style="width: 180px;"/></center>
-
---
-<br/>
-- <span style="color:orange">**Stable and mature**</span> code base
-<br/>
-
-<center>
-    <span style="font-size:25px;font-weight:bold">
-        <a style="color:orange" href=https://github.com/joblib/joblib>
-            https://github.com/joblib/joblib
-        </a>
-    </span>
-</center>
 
 ---
 
